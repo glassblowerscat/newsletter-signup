@@ -48,6 +48,7 @@ app.post('/', (req, res) => {
   request(options, (err, response, body) => {
     if (err || response.statusCode != "200") {
       res.sendFile(`${__dirname}/failure.html`);
+      err ? console.log(err) : console.log(response);
     } else {
       res.sendFile(`${__dirname}/success.html`);
     }
