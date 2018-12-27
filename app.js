@@ -5,6 +5,8 @@ const request = require('request');
 const app = express();
 const port = process.env.PORT;
 
+require('dotenv').config({ path: 'variables.env' });
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -38,7 +40,7 @@ app.post('/', (req, res) => {
     url: 'https://us2.api.mailchimp.com/3.0/lists/5bd5b5bafc',
     method: 'POST',
     headers: {
-      "Authorization": "re c59d359e29892ffa2c2ec0dbf53c89cb-us2"
+      "Authorization": `re ${process.env.MAILCHIMP_KEY}`
     },
     body: jsonData
   };
