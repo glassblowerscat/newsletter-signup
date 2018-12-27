@@ -5,9 +5,13 @@ const request = require('request');
 const app = express();
 const port = process.env.PORT;
 
-require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({
+  path: 'variables.env'
+});
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static("public"));
 
 app.listen(port || 3000, console.log(`Server running on port ${port}.`));
@@ -22,16 +26,14 @@ app.post('/', (req, res) => {
   let emailAddress = req.body.inputEmailAddress;
 
   let data = {
-    members: [
-      {
-        email_address: emailAddress,
-        status: "subscribed",
-        merge_fields: {
-          FNAME: firstName,
-          LNAME: lastName
-        }
+    members: [{
+      email_address: emailAddress,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: firstName,
+        LNAME: lastName
       }
-    ]
+    }]
   }
 
   jsonData = JSON.stringify(data);
@@ -58,7 +60,3 @@ app.post('/', (req, res) => {
 app.post('/failure', (req, res) => {
   res.redirect('/');
 });
-
-// c59d359e29892ffa2c2ec0dbf53c89cb-us2
-
-// 5bd5b5bafc
